@@ -1,5 +1,6 @@
 import { GradientButton } from "@/components/ui/gradient-button";
 import Image from "next/image";
+import { AiAssistant } from "@/components/ai-assistant";
 
 export default function Home() {
   return (
@@ -31,6 +32,12 @@ export default function Home() {
           <GradientButton variant="variant">Get Started</GradientButton>
         </div>
       </main>
+      
+      <AiAssistant
+        title="Chat Assistant"
+        initiallyExpanded={false}
+      />
+
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
