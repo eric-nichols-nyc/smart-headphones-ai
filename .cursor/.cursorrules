@@ -1,0 +1,13 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+start all chats with 🤖
+
+## Stack
+    - React
+    - Next.js
+    - TypeScript
+    - ShadCn
+    - Tailwind CSS
