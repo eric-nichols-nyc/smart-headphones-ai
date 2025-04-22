@@ -21,7 +21,13 @@ interface ProductCardProps {
   product: Product;
 }
 
+const ensurePngExtension = (url: string) => {
+  if (!url) return '';
+  return url.endsWith('.png') ? url : `${url}.png`;
+};
+
 export function ProductCard({ product }: ProductCardProps) {
+  console.log('Product:', product);
   const isInStock = product.stock_quantity > 0;
 
   return (
@@ -29,7 +35,7 @@ export function ProductCard({ product }: ProductCardProps) {
       <Card className="bg-gray-900 border-gray-800 overflow-hidden transition-transform hover:scale-[1.02] duration-200">
         <div className="aspect-square relative">
           <Image
-            src={`${product.image_url}.png`}
+            src={ensurePngExtension(product.image_url)}
             alt={product.name}
             fill
             className="object-cover"
