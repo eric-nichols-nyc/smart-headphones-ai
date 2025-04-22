@@ -25,9 +25,9 @@ export function Header() {
         </div>
         <div className="flex items-center gap-4">
           <AiAssistant>
-            <ShinyButton className="flex items-center gap-2.5 rounded-lg px-5 py-2.5 font-medium text-white transition-all duration-300 animate-bg-shine bg-[linear-gradient(110deg,#4c1d95,45%,#7c3aed,55%,#4c1d95)] bg-[length:200%_100%] border-purple-900 hover:bg-[length:300%_100%] hover:border-purple-700">
+            <ShinyButton className="flex items-center gap-2.5 rounded-lg px-3 md:px-5 py-2.5 font-medium text-white transition-all duration-300 animate-bg-shine bg-[linear-gradient(110deg,#4c1d95,45%,#7c3aed,55%,#4c1d95)] bg-[length:200%_100%] border-purple-900 hover:bg-[length:300%_100%] hover:border-purple-700">
               <MessageSquareText className="h-5 w-5" />
-              <span className="font-medium">Chat with AI Assistant</span>
+              <span className="hidden md:inline font-medium">Chat with AI Assistant</span>
             </ShinyButton>
           </AiAssistant>
         </div>
