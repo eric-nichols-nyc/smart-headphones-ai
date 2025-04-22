@@ -27,7 +27,6 @@ const ensurePngExtension = (url: string) => {
 };
 
 export function ProductCard({ product }: ProductCardProps) {
-  console.log('Product:', product);
   const isInStock = product.stock_quantity > 0;
 
   return (
