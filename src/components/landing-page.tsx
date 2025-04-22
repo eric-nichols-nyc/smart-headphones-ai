@@ -3,7 +3,6 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ShinyButton } from '@/components/ui/shiny-button'
 

@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils';
 import { ReactNode } from 'react';
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 interface ChatBubbleProps {
   children: ReactNode;
@@ -47,28 +48,24 @@ interface ChatBubbleAvatarProps {
 
 export function ChatBubbleAvatar({ src, alt, className }: ChatBubbleAvatarProps) {
   return (
-    <div className={cn(
-      'w-8 h-8 rounded-full bg-muted flex items-center justify-center overflow-hidden',
-      className
-    )}>
-      {src ? (
-        <img src={src} alt={alt} className="w-full h-full object-cover" />
-      ) : (
-        <svg 
-          className="w-5 h-5 text-foreground/60" 
-          xmlns="http://www.w3.org/2000/svg" 
-          fill="none" 
-          viewBox="0 0 24 24" 
+    <Avatar className={cn("w-8 h-8", className)}>
+      <AvatarImage src={src} alt={alt || "Avatar"} />
+      <AvatarFallback className="text-foreground/60">
+        <svg
+          className="w-5 h-5"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
           stroke="currentColor"
         >
-          <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            strokeWidth={2} 
-            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" 
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
           />
         </svg>
-      )}
-    </div>
+      </AvatarFallback>
+    </Avatar>
   );
 } 

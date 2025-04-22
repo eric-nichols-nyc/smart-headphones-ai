@@ -38,8 +38,8 @@ export function AiAssistant({
   const defaultTrigger = (
     <button
       className={cn(
-        'flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 text-white shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500',
-        isOpen && 'bg-blue-600',
+        'flex h-12 w-12 items-center justify-center rounded-full bg-[#1a237e] text-white shadow-lg hover:bg-[#283593] focus:outline-none focus:ring-2 focus:ring-[#1a237e]',
+        isOpen && 'bg-[#283593]',
         className
       )}
     >
@@ -58,10 +58,10 @@ export function AiAssistant({
           side="top"
           align="end"
         >
-          <div className="flex flex-col rounded-lg bg-white shadow-lg dark:bg-gray-800">
+          <div className="flex flex-col rounded-lg bg-[#0a1929] shadow-xl dark:bg-[#0a1929]">
             {/* Header */}
-            <div className="flex items-center justify-between border-b p-4 dark:border-gray-700">
-              <h3 className="font-semibold text-gray-900 dark:text-white">
+            <div className="flex items-center justify-between border-b border-[#1e3a5f] p-4">
+              <h3 className="font-semibold text-white">
                 {title}
               </h3>
             </div>
@@ -81,8 +81,8 @@ export function AiAssistant({
                       className={cn(
                         'max-w-[80%] rounded-lg p-3',
                         message.type === 'user'
-                          ? 'bg-blue-500 text-white'
-                          : 'bg-gray-100 dark:bg-gray-700 dark:text-white'
+                          ? 'bg-[#1a237e] text-white'
+                          : 'bg-[#132f4c] text-white'
                       )}
                     >
                       {message.content}
@@ -92,7 +92,7 @@ export function AiAssistant({
               </div>
 
               {/* Input Area */}
-              <div className="border-t p-4 dark:border-gray-700">
+              <div className="border-t border-[#1e3a5f] p-4">
                 <div className="flex space-x-2">
                   <input
                     type="text"
@@ -104,11 +104,11 @@ export function AiAssistant({
                       }
                     }}
                     placeholder="Type your message..."
-                    className="flex-1 rounded-lg border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                    className="flex-1 rounded-lg border border-[#1e3a5f] bg-[#132f4c] px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1a237e]"
                   />
                   <button
                     onClick={handleSendMessage}
-                    className="rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="rounded-lg bg-[#1a237e] px-4 py-2 text-white hover:bg-[#283593] focus:outline-none focus:ring-2 focus:ring-[#1a237e]"
                   >
                     Send
                   </button>

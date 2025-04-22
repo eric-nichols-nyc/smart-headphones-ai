@@ -47,9 +47,10 @@ async function getProduct(id: string): Promise<Product> {
   }
 }
 
-export default async function ProductPage({ params }: { params: { id: string } }) {
-  console.log('Rendering product page for ID:', params.id)
-  const product = await getProduct(params.id)
+export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  console.log('Rendering product page for ID:', id)
+  const product = await getProduct(id)
 
   return (
     <main className="min-h-screen bg-black">
