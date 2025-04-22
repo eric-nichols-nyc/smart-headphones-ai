@@ -13,7 +13,8 @@ import { MessageCircle } from 'lucide-react';
 export function AiAssistant({
   title = 'AI Assistant',
   initiallyExpanded = false,
-  className
+  className,
+  children
 }: AiAssistantProps) {
   const [isOpen, setIsOpen] = useState(initiallyExpanded);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -34,19 +35,23 @@ export function AiAssistant({
     // TODO: Handle AI response
   };
 
+  const defaultTrigger = (
+    <button
+      className={cn(
+        'flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 text-white shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500',
+        isOpen && 'bg-blue-600',
+        className
+      )}
+    >
+      <MessageCircle className="h-6 w-6" />
+    </button>
+  );
+
   return (
-    <div className="fixed bottom-4 right-4">
+    <div className="relative">
       <Popover open={isOpen} onOpenChange={setIsOpen}>
         <PopoverTrigger asChild>
-          <button
-            className={cn(
-              'flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 text-white shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500',
-              isOpen && 'bg-blue-600',
-              className
-            )}
-          >
-            <MessageCircle className="h-6 w-6" />
-          </button>
+          {children || defaultTrigger}
         </PopoverTrigger>
         <PopoverContent
           className="w-96 p-0"

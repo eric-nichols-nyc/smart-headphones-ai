@@ -22,7 +22,7 @@ const FEATURED_HEADPHONES = [
   }
 ]
 
-export function LandingHero() {
+export function LandingPage() {
   return (
     <div className="min-h-screen bg-black text-white">
       <div className="container mx-auto px-4 py-12">

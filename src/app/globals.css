@@ -341,4 +341,19 @@ body {
     --border-color-1: hsla(320, 75%, 90%, 0.2);
     --border-color-2: hsla(320, 50%, 90%, 0.75);
   }
+
+  /* Shiny button animation */
+  .animate-bg-shine {
+    background-size: 200% 100%;
+    animation: shine 4200ms linear infinite;
+  }
+
+  @keyframes shine {
+    from {
+      background-position: 200% center;
+    }
+    to {
+      background-position: -200% center;
+    }
+  }
 }

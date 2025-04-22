@@ -4,6 +4,8 @@ export interface AiAssistantProps {
   initiallyExpanded?: boolean;
   /** Additional CSS classes to apply to the chat container */
   className?: string;
+  /** Optional custom trigger element */
+  children?: React.ReactNode;
 }
 
 export type MessageType = 'user' | 'assistant';
