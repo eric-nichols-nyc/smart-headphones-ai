@@ -35,7 +35,7 @@ export function LandingPage() {
               AI will help you find the perfect headphones
             </p>
             {/* AI Chat Preview */}
-            <div className="bg-gray-900 rounded-lg p-6 mb-8 max-w-md">
+            <div className="bg-gray-900 rounded-lg p-6 max-w-md">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center">
                   <span className="text-sm">AI</span>
@@ -54,6 +54,18 @@ export function LandingPage() {
                 />
               </div>
             </div>
+          </div>
+
+          <div className="relative flex flex-col justify-center items-center">
+            <Image
+              src="/images/hero-headphones-2.png"
+              alt="Premium Headphones"
+              width={500}
+              height={500}
+              className="w-auto h-auto max-w-[90%]"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-transparent rounded-full blur-3xl -z-10" />
             <ShinyButton
               asChild
               size="lg"
@@ -63,18 +75,6 @@ export function LandingPage() {
                 Get Started
               </Link>
             </ShinyButton>
-          </div>
-
-          <div className="relative flex justify-center items-center">
-            <Image
-              src="/images/hero-headphones-2.png"
-              alt="Premium Headphones"
-              width={500}
-              height={500}
-              className="w-auto h-auto max-w-[80%]"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-transparent rounded-full blur-3xl -z-10" />
           </div>
         </div>
 
