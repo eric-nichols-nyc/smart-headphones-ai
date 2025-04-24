@@ -4,95 +4,101 @@ A Next.js application that provides an AI-powered shopping experience for headph
 
 ## 🚀 Features
 
-- **AI Shopping Assistant**: Intelligent product recommendations based on user requirements
-- **Real-time Product Listings**: Dynamic display of products with detailed information
-- **Responsive Design**: Mobile-first approach using Tailwind CSS
-- **Server-Side Integration**: Seamless connection with Supabase backend
+- **AI Shopping Assistant**: Intelligent product recommendations based on user preferences and requirements
+- **Real-time Product Listings**: Dynamic display of products with detailed information and stock status
+- **Responsive Design**: Mobile-first approach using Tailwind CSS and shadcn/ui components
+- **Server-Side Integration**: Seamless connection with backend services
 - **Streaming AI Responses**: Real-time AI responses using Server-Sent Events (SSE)
+- **Product Details**: Comprehensive product information with high-quality images and specifications
 
 ## 📁 Project Structure
 
 ```
-frontend/
-├── src/
-│   ├── app/                    # Next.js App Router
-│   │   ├── api/               # API Routes
-│   │   │   ├── products/      # Product API endpoints
-│   │   │   └── products-ai/   # AI Assistant endpoint
-│   │   ├── page.tsx           # Home page
-│   │   └── layout.tsx         # Root layout
-│   ├── components/            # React Components
-│   │   ├── ui/               # Shadcn UI components
-│   │   ├── ProductCard.tsx   # Product display component
-│   │   ├── ProductList.tsx   # Product grid component
-│   │   └── AssistantAI.tsx   # AI chat interface
-│   └── lib/                   # Utility functions
+src/
+├── app/                      # Next.js App Router
+│   ├── api/                 # API Routes
+│   ├── (app)/              # App routes
+│   ├── layout.tsx          # Root layout
+│   ├── page.tsx            # Home page
+│   ├── template.js         # App template
+│   └── globals.css         # Global styles
+├── components/             # React Components
+│   ├── ui/                # Shadcn UI components
+│   ├── layout/            # Layout components
+│   ├── chat/             # Chat interface components
+│   ├── ai-assistant/     # AI assistant components
+│   ├── product-card.tsx  # Product card component
+│   ├── product-list.tsx  # Product grid component
+│   ├── product-detail.tsx # Product details view
+│   ├── header.tsx        # Application header
+│   └── landing-page.tsx  # Main landing page
+├── lib/                   # Utility functions
+│   ├── recommendations/  # AI recommendation logic
+│   └── utils.ts          # Common utilities
+└── types/                # TypeScript type definitions
 ```
 
 ## 🧩 Key Components
 
-### ProductList
-- Displays a responsive grid of products
-- Handles loading states and error conditions
-- Fetches product data from the backend
-- Integrates with ProductCard for individual product display
+### Product Components
+- **ProductList**: Responsive grid of products with filtering and sorting capabilities
+- **ProductCard**: Individual product display with image, price, and quick actions
+- **ProductDetail**: Comprehensive product information view with specifications
+- **LandingPage**: Main product showcase with featured items and categories
 
-### ProductCard
-- Displays individual product information
-- Shows product image, name, description, and price
-- Handles stock status with visual indicators
-- Responsive image loading with Next.js Image optimization
+### Layout Components
+- **Header**: Navigation and search functionality
+- **Layout**: Reusable layout components for consistent UI structure
 
-### AssistantAI
-- Provides an interactive chat interface
-- Integrates with Anthropic's Claude AI
-- Streams responses in real-time
-- Displays product recommendations with cards
-- Maintains chat history and context
+### AI Assistant Components
+- Interactive chat interface with real-time responses
+- Product recommendation system
+- Context-aware conversation handling
+- Integration with AI services for intelligent suggestions
 
 ## 🔌 API Integration
 
 ### Products API
-- `GET /api/products`: Fetches all products from Supabase
-- Returns product information including:
-  - Name, description, price
-  - Stock quantity
-  - Images
-  - Categories
+- Product listing and details
+- Category management
+- Stock status tracking
+- Image handling and optimization
 
 ### AI Assistant API
-- `POST /api/products-ai`: Handles AI interactions
-- Features:
-  - Streaming responses using SSE
-  - Product-aware recommendations
-  - Structured response format
-  - Error handling and logging
+- Real-time chat communication
+- Streaming responses via SSE
+- Product-aware recommendations
+- Contextual conversation handling
 
 ## 💻 Technology Stack
 
 - **Framework**: Next.js 14 with App Router
 - **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **UI Components**: shadcn/ui
-- **AI Integration**: Anthropic Claude API
-- **Database**: Supabase
-- **State Management**: React Hooks
-- **API Communication**: Server-Sent Events (SSE)
+- **UI & Styling**:
+  • Tailwind CSS for utility-first styling
+  • shadcn/ui for pre-built components
+- **State Management**: React Hooks and Context
+- **API Layer**:
+  • REST APIs
+  • Server-Sent Events (SSE)
+- **Image Optimization**: Next.js Image component
+- **Development Tools**:
+  • ESLint for code quality
+  • Prettier for code formatting
+  • TypeScript for type safety
 
 ## 🔧 Development
 
 ### Prerequisites
 - Node.js 18+
 - npm or yarn
-- Supabase account
-- Anthropic API key
+- Environment variables configuration
 
 ### Environment Variables
 ```env
-ANTHROPIC_API_KEY=your_api_key
-SUPABASE_URL=your_supabase_url
-SUPABASE_KEY=your_supabase_key
-PRODUCTS_API_URL=http://localhost:3001
+NEXT_PUBLIC_API_URL=your_api_url
+NEXT_PUBLIC_ASSETS_URL=your_assets_url
+AI_SERVICE_KEY=your_ai_service_key
 ```
 
 ### Getting Started
@@ -108,54 +114,60 @@ PRODUCTS_API_URL=http://localhost:3001
 
 3. Open [http://localhost:3000](http://localhost:3000)
 
-## 🤝 Integration Points
-
-### Supabase Integration
-- Direct connection to Supabase database
-- Real-time product data synchronization
-- Secure API key management
-
-### AI Assistant Integration
-- Anthropic Claude API for intelligent recommendations
-- Streaming response handling
-- Product-aware context management
-
 ## 🎯 Features in Detail
 
 ### Product Display
-- Responsive grid layout
-- Image optimization
-- Price formatting
-- Stock status indicators
-- Category labeling
+- Responsive grid layout with dynamic sizing
+- Optimized image loading and caching
+- Real-time stock status updates
+- Price formatting and currency handling
+- Category and tag filtering
 
-### AI Assistant
+### AI Shopping Assistant
+- Natural language product search
+- Personalized recommendations
+- Product comparison assistance
 - Real-time chat interface
-- Context-aware recommendations
-- Product card integration
-- Error handling
-- Loading states
+- Context retention between sessions
 
 ## 🔒 Security Considerations
 
 - Environment variable protection
-- API key security
-- Rate limiting
-- Error boundary implementation
-- Input validation
+- API request validation
+- Rate limiting implementation
+- Error boundary handling
+- Input sanitization
+- Secure data transmission
 
 ## 🚀 Performance Optimizations
 
 - Image optimization with Next.js
-- Component lazy loading
+- Component code splitting
+- Dynamic imports for large components
 - API response caching
-- Streaming responses
-- Efficient re-rendering management
+- Efficient state management
+- Optimized re-rendering
 
 ## 📱 Responsive Design
 
-- Mobile-first approach
-- Breakpoint optimization
-- Flexible grid layouts
-- Adaptive UI components
-- Touch-friendly interactions
+- Mobile-first development approach
+- Responsive breakpoints:
+  - Mobile: < 640px
+  - Tablet: 640px - 1024px
+  - Desktop: > 1024px
+- Touch-friendly interface
+- Adaptive layouts
+- Responsive images
+- Accessible design patterns
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

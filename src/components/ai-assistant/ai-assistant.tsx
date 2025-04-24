@@ -10,7 +10,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Message, useChat } from "@ai-sdk/react";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, SendIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -42,7 +42,7 @@ export function AiAssistant({
   className,
   children,
 }: AiAssistantProps) {
-  const { messages, append, isLoading } = useChat({
+  const { messages, append, status } = useChat({
     api: "/api/recommendations",
   });
   const [isOpen, setIsOpen] = useState(initiallyExpanded);
@@ -59,9 +59,11 @@ export function AiAssistant({
     { text: "Budget friendly", prompt: "Show me your most affordable options" }
   ];
 
-  const handleSuggestionClick = (prompt: string) => {
-    setInputValue(prompt);
-    inputRef.current?.focus();
+  const handleSuggestionClick = async (prompt: string) => {
+    await append({
+      role: "user",
+      content: prompt,
+    });
   };
 
   const welcomeMessage = {
@@ -125,6 +127,7 @@ export function AiAssistant({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!inputValue.trim()) return;
+
     const message = inputValue;
     setInputValue("");
     await append({
@@ -222,7 +225,7 @@ export function AiAssistant({
                     ))}
                   </div>
                 )}
-                {isLoading && (
+                {status === "submitted" && (
                   <div className="text-center text-white text-sm">Thinking...</div>
                 )}
                 <div ref={messagesEndRef} />
@@ -253,10 +256,10 @@ export function AiAssistant({
                   />
                   <button
                     type="submit"
-                    disabled={isLoading}
+                    disabled={status === "submitted"}
                     className="rounded-lg bg-blue-500 px-4 py-2 text-white text-sm disabled:opacity-50"
                   >
-                    Send
+                    <SendIcon className="w-4 h-4" />
                   </button>
                 </form>
               </div>
