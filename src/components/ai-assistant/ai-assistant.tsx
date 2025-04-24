@@ -48,7 +48,26 @@ export function AiAssistant({
   const [isOpen, setIsOpen] = useState(initiallyExpanded);
   const [products, setProducts] = useState<APIProduct[]>([]);
   const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
+  const [inputValue, setInputValue] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const suggestionPrompts = [
+    { text: "Good for studying", prompt: "I want something that is good for studying" },
+    { text: "Best for gaming", prompt: "What are your best headphones for gaming?" },
+    { text: "Noise cancelling", prompt: "I need headphones with good noise cancellation" },
+    { text: "Budget friendly", prompt: "Show me your most affordable options" }
+  ];
+
+  const handleSuggestionClick = (prompt: string) => {
+    setInputValue(prompt);
+    inputRef.current?.focus();
+  };
+
+  const welcomeMessage = {
+    role: "assistant",
+    content: "👋 Hi there! I'm your AI shopping assistant. I can help you find the perfect headphones based on your preferences. Feel free to ask me about specific features, price ranges, or use cases!"
+  };
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -105,10 +124,9 @@ export function AiAssistant({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    const input = form.querySelector("input") as HTMLInputElement;
-    const message = input.value;
-    input.value = "";
+    if (!inputValue.trim()) return;
+    const message = inputValue;
+    setInputValue("");
     await append({
       role: "user",
       content: message,
@@ -141,6 +159,13 @@ export function AiAssistant({
             {/* Messages Container */}
             <div className="flex h-[700px] flex-col">
               <div className="flex-1 space-y-3 overflow-y-auto p-4">
+                {messages.length === 0 && (
+                  <div className="flex justify-start w-full">
+                    <div className="rounded-lg px-4 py-2 text-sm bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white w-full">
+                      {welcomeMessage.content}
+                    </div>
+                  </div>
+                )}
                 {messages.map((message: Message, i: number) => (
                   <div
                     key={i}
@@ -205,9 +230,24 @@ export function AiAssistant({
 
               {/* Input Area */}
               <div className="border-t border-[#1e3a5f] p-4">
+                {/* Suggestion Buttons */}
+                <div className="mb-4 flex flex-wrap gap-2">
+                  {suggestionPrompts.map((suggestion, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleSuggestionClick(suggestion.prompt)}
+                      className="rounded-full bg-[#1e3a5f] px-3 py-1 text-xs text-white hover:bg-[#2a4a7f] transition-colors"
+                    >
+                      {suggestion.text}
+                    </button>
+                  ))}
+                </div>
                 <form onSubmit={handleSubmit} className="flex space-x-4">
                   <input
+                    ref={inputRef}
                     type="text"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
                     placeholder="Ask about headphones..."
                     className="flex-1 rounded-lg border border-gray-300 p-2 bg-[#1e3a5f] text-white text-sm placeholder-gray-400"
                   />

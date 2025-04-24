@@ -57,10 +57,13 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       <div className="container mx-auto px-4 py-6">
         <Link
           href="/products"
-          className="inline-flex items-center text-gray-400 hover:text-white transition-colors"
+          className="group inline-flex items-center relative px-4 py-2 rounded-lg overflow-hidden"
         >
-          <ChevronLeft className="w-5 h-5 mr-2" />
-          Back to Products
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-fuchsia-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <ChevronLeft className="w-5 h-5 mr-2 text-purple-400 group-hover:text-fuchsia-400 transition-colors duration-300" />
+          <span className="bg-gradient-to-r from-purple-400 via-fuchsia-500 to-indigo-400 bg-clip-text text-transparent font-medium group-hover:from-purple-300 group-hover:via-fuchsia-400 group-hover:to-indigo-300 transition-all duration-300">
+            Back to Products
+          </span>
         </Link>
         
         <ProductDetail product={product} />
